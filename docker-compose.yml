@@ -1,8 +1,13 @@
-version: '3.7'
 services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/usr/src/app
+    api:
+        build:
+            dockerfile: Dockerfile
+            context: .
+            target: development
+        volumes:
+            - .:/usr/src/app
+        env_file:
+            - .env
+        ports:
+            - "3000:3000"
+        command: npm run start:dev
